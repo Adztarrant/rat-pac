@@ -1,0 +1,33 @@
+/glg4debug/glg4param omit_muon_processes  0.0
+/glg4debug/glg4param omit_hadronic_processes  0.0
+
+#Load in the detector experimnet and geo files change here to the correct detecor gemomentrys  
+/rat/db/set DETECTOR experiment "NEPTUNE_wbls_5m_3m_5pct_2165mm"
+/rat/db/set DETECTOR geo_file "NEPTUNE_wbls_5m_3m_5pct_2165mm/NEPTUNE_wbls_5m_3m_5pct_2165mm.geo"
+
+
+#Load in the fill material (this is done in the geo but is more stable when redefined here)
+/rat/db/set GEO[detector_veto1] material "wbls_gd_01pct_ly100_WM_0121"
+/rat/db/set GEO[detector_veto2] material "wbls_gd_01pct_ly100_WM_0121"
+/rat/db/set GEO[detector_target_gb] material "wbls_gd_01pct_ly100_WM_0121"
+/rat/db/set GEO[detector_target_fv] material "wbls_gd_01pct_ly100_WM_0121"
+
+
+
+/run/initialize
+# BEGIN EVENT LOOP
+/rat/proc lesssimpledaq
+/rat/proc count
+/rat/procset update 200
+# Use IO.default_output_filename
+/rat/proclast outroot
+/rat/procset file "Example_Neptune.root"
+#END EVENT LOOP
+
+
+#Generotator 
+/generator/add combo gun2:regexfill:poisson
+/generator/vtx/set e-  0 0 0 0 1.0 20.0
+/generator/pos/set detector+
+/generator/rate/set 1
+/run/beamOn 1000
