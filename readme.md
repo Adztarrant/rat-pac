@@ -1,3 +1,9 @@
+Adam Tarrant 22/12/16 
+A personal repository based off the watchamn ratpac package
+
+
+
+
 Watchman Utilities
 ==================
 **Maintainer:** [@MorganAskins](https://github.com/MorganAskins)
